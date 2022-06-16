@@ -4,21 +4,21 @@
 
 class Bohater : public Postac
 {
-    int level;
 public:
+    int Max_life;
     Bohater(std::string filename, std::map<std::string, std::vector<sf::IntRect>> Frames, int Zycie, int Sila, int Speed) : Postac(filename, Frames, Zycie, Sila, Speed)
     {
-
+        this->Max_life = Zycie;
     }
     void ruch(sf::Keyboard::Key &wsad, sf::Time &time, std::vector<Walk> *Background)
     {
         sf::FloatRect x = this->getGlobalBounds();
+        sf::FloatRect Reaction(x.left + 15, x.top + 30, 1, 1);
         switch (wsad)
         {
         case sf::Keyboard::W:
         {
             this->setPosition(x.left, x.top - this->speed*time.asSeconds());
-            sf::FloatRect Reaction = this->getGlobalBounds();
             bool Flag = true;
             for(auto &x : *Background)
             {
@@ -39,26 +39,71 @@ public:
             break;
         }
         case sf::Keyboard::S:
+        {
             this->setPosition(x.left, x.top + this->speed*time.asSeconds());
+            bool Flag = true;
+            for(auto &x : *Background)
+            {
+                if(x.allow && Reaction.intersects(x.getGlobalBounds()))
+                {
+                    Flag = false;
+                    break;
+                }
+            }
+            if(Flag)
+            {
+                this->setPosition(x.left, x.top - this->speed*time.asSeconds());
+            }
             if(this->state != "Down")
             {
                 this->choose("Down");
             }
             break;
+        }
         case sf::Keyboard::A:
+        {
             this->setPosition(x.left - this->speed*time.asSeconds(), x.top);
+            bool Flag = true;
+            for(auto &x : *Background)
+            {
+                if(x.allow && Reaction.intersects(x.getGlobalBounds()))
+                {
+                    Flag = false;
+                    break;
+                }
+            }
+            if(Flag)
+            {
+                this->setPosition(x.left + this->speed*time.asSeconds(), x.top);
+            }
             if(this->state != "Left")
             {
                 this->choose("Left");
             }
             break;
+        }
         case sf::Keyboard::D:
+        {
             this->setPosition(x.left + this->speed*time.asSeconds(), x.top);
+            bool Flag = true;
+            for(auto &x : *Background)
+            {
+                if(x.allow && Reaction.intersects(x.getGlobalBounds()))
+                {
+                    Flag = false;
+                    break;
+                }
+            }
+            if(Flag)
+            {
+                this->setPosition(x.left - this->speed*time.asSeconds(), x.top);
+            }
             if(this->state != "Right")
             {
                 this->choose("Right");
             }
             break;
+        }
         default:
             break;
         }

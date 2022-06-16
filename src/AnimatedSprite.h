@@ -5,10 +5,10 @@
 
 class AnimatedSprite : public sf::Sprite
 {
-    sf::Texture texture;
-    std::vector<sf::IntRect> frames;
     float frame;
 protected:
+    std::vector<sf::IntRect> frames;
+    sf::Texture texture;
     virtual void changes(std::vector<sf::IntRect> new_frames)
     {
         this->frames = new_frames;

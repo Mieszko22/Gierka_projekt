@@ -1,5 +1,5 @@
 #pragma once
-#include "Postac.h"
+#include "Bohater.h"
 #include <cmath>
 class Potwor : public Postac
 {
@@ -54,5 +54,53 @@ public:
                 this->choose(this->state + "_Stay");
             }
         }
+    }
+    bool fight(Bohater *Hero, sf::RenderWindow &window)
+    {
+        if(this->getGlobalBounds().intersects(Hero->getGlobalBounds()))
+        {
+            sf::Texture tekstura, tekstura2, tekstura3;
+            tekstura.loadFromFile("lpc_home_cup.gif");
+            tekstura2.loadFromFile("soldier.png");
+            sf::Sprite Potwor2(this->texture, this->frames[0]);
+            sf::Sprite Mapa(tekstura);
+
+            sf::Sprite Hero2(tekstura2, {0,0,32,32});
+            Hero2.setPosition(200,200);
+            while(window.isOpen())
+            {
+                sf::Event event;
+                while(window.pollEvent(event))
+                {
+                    if(event.type == sf::Event::Closed)
+                        window.close();
+                    if(event.type == sf::Event::KeyPressed)
+                    {
+                        if(event.key.code == sf::Keyboard::F)
+                        {
+                            this->zycie -= Hero->sila;
+                            Hero->zycie -= this->sila;
+                        }
+                    }
+                }
+                if(Hero->zycie <= 0)
+                {
+                    window.close();
+                }
+                if(this->zycie <= 0)
+                {
+                    break;
+                }
+                window.clear(sf::Color::Black);
+                window.draw(Mapa);
+                window.draw(Hero2);
+                window.draw(Potwor2);
+                window.display();
+            }
+            window.clear(sf::Color::Black);
+            return true;
+            
+        }
+        return false;
     }
 };
