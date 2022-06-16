@@ -21,20 +21,19 @@ public:
         {
            throw "Brak tekstury";
         }
-        this->setTexture( texture );
-        this->setTextureRect( Frames[0] );
+        this->setTexture(texture);
+        this->setTextureRect(Frames[0]);
         this->frames = Frames;
         this->frame = 0;
     }
-    virtual ~AnimatedSprite(){}
-
     virtual void animate(const sf::Time &czas)
     {
         frame += czas.asSeconds() * 60.0f;
-        while ( frame > 10 * frames.size() ) {
+        while (frame > 10 * frames.size()) 
+        {
             frame -= 10 * frames.size() ;
         }
-        this->setTextureRect( frames[frame/10] );
+        this->setTextureRect(frames[frame/10]);
     }
    
 };

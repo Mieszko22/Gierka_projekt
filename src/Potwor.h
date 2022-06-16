@@ -60,13 +60,14 @@ public:
         if(this->getGlobalBounds().intersects(Hero->getGlobalBounds()))
         {
             sf::Texture tekstura, tekstura2, tekstura3;
-            tekstura.loadFromFile("lpc_home_cup.gif");
+            tekstura.loadFromFile("lpc_home_cup.png");
             tekstura2.loadFromFile("soldier.png");
-            sf::Sprite Potwor2(this->texture, this->frames[0]);
+            sf::Sprite Potwor2(this->texture, {0, 70, 32, 28});
+            // sf::Sprite Potwor2(this->texture, this->frames[0]);
             sf::Sprite Mapa(tekstura);
-
-            sf::Sprite Hero2(tekstura2, {0,0,32,32});
-            Hero2.setPosition(200,200);
+            sf::Sprite Hero2(tekstura2, {16,143,31,47});
+            Hero2.setPosition(150,200);
+            Potwor2.setPosition(350,200);
             while(window.isOpen())
             {
                 sf::Event event;

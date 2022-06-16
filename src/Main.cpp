@@ -23,7 +23,7 @@ int main()
         }
     }
     //Characters.push_back(std::unique_ptr<Bohater>(new Bohater("soldier.png", Label, 10, 10, 2000)));
-    Bohater *Hero = new Bohater("soldier.png", Label1, 10, 10, 20000);
+    Bohater *Hero = new Bohater("soldier.png", Label1, 100, 100, 2000);
     Locations Map(Hero);
     Hero->setPosition(200,200);
     //Characters[0]->setPosition(100, 100);
