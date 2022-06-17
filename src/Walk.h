@@ -10,5 +10,6 @@ public:
     {
         this->is_door = false;
         this->heal = false;
+        this->allow = false;
     }
 };

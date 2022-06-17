@@ -3,8 +3,9 @@
 
 class Postac : public AnimatedSprite
 {
-    std::map<std::string, std::vector<sf::IntRect>> all_frames;
+    
 protected:
+    std::map<std::string, std::vector<sf::IntRect>> all_frames;
     std::string state;
     int speed;
 public:

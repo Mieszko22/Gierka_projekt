@@ -12,13 +12,14 @@ public:
     }
     void ruch(sf::Keyboard::Key &wsad, sf::Time &time, std::vector<Walk> *Background)
     {
-        sf::FloatRect x = this->getGlobalBounds();
-        sf::FloatRect Reaction(x.left + 15, x.top + 30, 1, 1);
+        sf::FloatRect X = this->getGlobalBounds();
         switch (wsad)
         {
         case sf::Keyboard::W:
         {
-            this->setPosition(x.left, x.top - this->speed*time.asSeconds());
+            this->setPosition(X.left, X.top - this->speed*time.asSeconds());
+            sf::FloatRect y = this->getGlobalBounds();
+            sf::FloatRect Reaction(y.left + 15, y.top + 30, 1, 1);
             bool Flag = true;
             for(auto &x : *Background)
             {
@@ -30,7 +31,7 @@ public:
             }
             if(Flag)
             {
-                this->setPosition(x.left, x.top + this->speed*time.asSeconds());
+                this->setPosition(X.left, X.top);
             }
             if(this->state != "Up")
             {
@@ -40,7 +41,9 @@ public:
         }
         case sf::Keyboard::S:
         {
-            this->setPosition(x.left, x.top + this->speed*time.asSeconds());
+            this->setPosition(X.left, X.top + this->speed*time.asSeconds());
+            sf::FloatRect y = this->getGlobalBounds();
+            sf::FloatRect Reaction(y.left + 15, y.top + 30, 1, 1);
             bool Flag = true;
             for(auto &x : *Background)
             {
@@ -52,7 +55,7 @@ public:
             }
             if(Flag)
             {
-                this->setPosition(x.left, x.top - this->speed*time.asSeconds());
+                this->setPosition(X.left, X.top);
             }
             if(this->state != "Down")
             {
@@ -62,7 +65,9 @@ public:
         }
         case sf::Keyboard::A:
         {
-            this->setPosition(x.left - this->speed*time.asSeconds(), x.top);
+            this->setPosition(X.left - this->speed*time.asSeconds(), X.top);
+            sf::FloatRect y = this->getGlobalBounds();
+            sf::FloatRect Reaction(y.left + 15, y.top + 30, 1, 1);
             bool Flag = true;
             for(auto &x : *Background)
             {
@@ -74,7 +79,7 @@ public:
             }
             if(Flag)
             {
-                this->setPosition(x.left + this->speed*time.asSeconds(), x.top);
+                this->setPosition(X.left, X.top);
             }
             if(this->state != "Left")
             {
@@ -84,7 +89,9 @@ public:
         }
         case sf::Keyboard::D:
         {
-            this->setPosition(x.left + this->speed*time.asSeconds(), x.top);
+            this->setPosition(X.left + this->speed*time.asSeconds(), X.top);
+            sf::FloatRect y = this->getGlobalBounds();
+            sf::FloatRect Reaction(y.left + 15, y.top + 30, 1, 1);
             bool Flag = true;
             for(auto &x : *Background)
             {
@@ -96,7 +103,7 @@ public:
             }
             if(Flag)
             {
-                this->setPosition(x.left - this->speed*time.asSeconds(), x.top);
+                this->setPosition(X.left, X.top);
             }
             if(this->state != "Right")
             {

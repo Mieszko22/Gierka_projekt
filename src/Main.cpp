@@ -23,7 +23,7 @@ int main()
         }
     }
     //Characters.push_back(std::unique_ptr<Bohater>(new Bohater("soldier.png", Label, 10, 10, 2000)));
-    Bohater *Hero = new Bohater("soldier.png", Label1, 100, 100, 2000);
+    Bohater *Hero = new Bohater("soldier.png", Label1, 1, 100, 2000);
     Locations Map(Hero);
     Hero->setPosition(200,200);
     //Characters[0]->setPosition(100, 100);
@@ -79,10 +79,13 @@ int main()
         for(auto &X : *Map.NPC)
         {
             window.draw(X);
-            X.Speak(Hero, window);
         }
         Hero->animate(time);
         window.draw(*Hero);
+        for(auto &X : *Map.NPC)
+        {
+            X.Speak(Hero, window);
+        }
         auto temp = Hero->getGlobalBounds();
         int i = 0;
         for(auto &X : *Map.Monster)

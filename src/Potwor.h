@@ -1,6 +1,8 @@
 #pragma once
 #include "Bohater.h"
 #include <cmath>
+#include <cstdlib>
+#include <unistd.h>
 class Potwor : public Postac
 {
     int range;
@@ -62,8 +64,7 @@ public:
             sf::Texture tekstura, tekstura2, tekstura3;
             tekstura.loadFromFile("lpc_home_cup.png");
             tekstura2.loadFromFile("soldier.png");
-            sf::Sprite Potwor2(this->texture, {0, 70, 32, 28});
-            // sf::Sprite Potwor2(this->texture, this->frames[0]);
+            sf::Sprite Potwor2(this->texture, this->all_frames["Down"][0]);
             sf::Sprite Mapa(tekstura);
             sf::Sprite Hero2(tekstura2, {16,143,31,47});
             Hero2.setPosition(150,200);
@@ -86,6 +87,16 @@ public:
                 }
                 if(Hero->zycie <= 0)
                 {
+                    sf::Texture defeat;
+                    defeat.loadFromFile("Defeat.png");
+                    sf::Sprite defeat2(defeat);
+                    window.clear(sf::Color::Black);
+                    window.draw(Mapa);
+                    window.draw(Hero2);
+                    window.draw(Potwor2);
+                    window.draw(defeat2);
+                    window.display();
+                    usleep(3000000);
                     window.close();
                 }
                 if(this->zycie <= 0)
