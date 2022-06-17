@@ -6,13 +6,8 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(500,500),"Kolos");
-    //std::vector<std::unique_ptr<Postac>> Characters;
     std::map<std::string, std::vector<sf::IntRect>> Label1;
     std::string Direkt[4] = {"Up", "Left", "Down", "Right"};
-    // Label.insert("Up_Stay", {{16,15,31,47}});
-    // Label.insert("Left_Stay", {{16,79,31,47}});
-    // Label.insert("Down_Stay", {{16,143,31,47}});
-    // Label.insert({"Right_Stay", {{16,207,31,47}}});
     for(int i = 0; i < 4; i++)
     {
         Label1.insert({Direkt[i] + "_Stay", {{16, 15 + i*64, 31, 47}}});
@@ -22,11 +17,9 @@ int main()
             Label1[Direkt[i]][j] = {80 + j*64, 15 + i*64, 31, 47};
         }
     }
-    //Characters.push_back(std::unique_ptr<Bohater>(new Bohater("soldier.png", Label, 10, 10, 2000)));
-    Bohater *Hero = new Bohater("soldier.png", Label1, 1, 100, 2000);
+    Bohater *Hero = new Bohater("soldier.png", Label1, 10, 10, 2000);
     Locations Map(Hero);
-    Hero->setPosition(200,200);
-    //Characters[0]->setPosition(100, 100);
+    Hero->setPosition(185,300);
     sf::Clock clock;
     while(window.isOpen())
     {

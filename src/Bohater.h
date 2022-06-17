@@ -6,7 +6,7 @@ class Bohater : public Postac
 {
 public:
     int Max_life;
-    Bohater(std::string filename, std::map<std::string, std::vector<sf::IntRect>> Frames, int Zycie, int Sila, int Speed) : Postac(filename, Frames, Zycie, Sila, Speed)
+    Bohater(std::string filename, std::map<std::string, std::vector<sf::IntRect>> &Frames, int Zycie, int Sila, int Speed) : Postac(filename, Frames, Zycie, Sila, Speed)
     {
         this->Max_life = Zycie;
     }

@@ -68,7 +68,7 @@ public:
             sf::Sprite Mapa(tekstura);
             sf::Sprite Hero2(tekstura2, {16,143,31,47});
             Hero2.setPosition(150,200);
-            Potwor2.setPosition(350,200);
+            Potwor2.setPosition(350,215);
             while(window.isOpen())
             {
                 sf::Event event;

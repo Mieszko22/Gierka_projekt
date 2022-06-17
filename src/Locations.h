@@ -63,11 +63,6 @@ public:
         {
             throw "Brak tekstury";
         }
-        Graphics.insert({"Mapa", sf::Texture()});
-        if (!this->Graphics["Mapa"].loadFromFile("lpc_home_cup.png"))
-        {
-            throw "Brak tekstury";
-        }
         Graphics.insert({"Bat", sf::Texture()});
         if (!this->Graphics["Bat"].loadFromFile("bat.png"))
         {
@@ -91,15 +86,13 @@ public:
         this->Levels.insert({"House", std::vector<Walk>{}});
         this->Levels.insert({"Outdoor", std::vector<Walk>{}});
         this->monsters.insert({"Outdoor", std::vector<Potwor>{}});
-        this->Levels.insert({"Mapa_walki", std::vector<Walk>{}});
         this->npc.insert({"Outdoor", std::vector<Npc>{}});
         this->npc.insert({"House", std::vector<Npc>{}});
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 7; j++)
             {
-                Walk temp; 
-                 
+                Walk temp;  
                 temp.setTexture(this->Graphics["Castlefloors"]);
                 temp.setTextureRect({32, 96, 32, 32});
                 temp.setPosition(106 + i * 32, 169 + j * 32);
@@ -113,8 +106,7 @@ public:
                 Walk temp; 
                 temp.allow = true;
                 if( i == 0 && j == 4)
-                {
-                     
+                {  
                     temp.setTexture(this->Graphics["Inside"]);
                     temp.setTextureRect({0, 128, 32, 32});
                     temp.setPosition(138 + i * 32, 169 + j * 32);
@@ -122,7 +114,6 @@ public:
                 }
                 else if( i == 0 && j == 5)
                 {
-                     
                     temp.setTexture(this->Graphics["Inside"]);
                     temp.setTextureRect({0, 128, 32, 32});
                     temp.setPosition(138 + i * 32, 169 + j * 32);
@@ -140,7 +131,6 @@ public:
         for (int i = 0; i < 9; i++)
         {
             Walk temp;
-             
             temp.setTexture(this->Graphics["Inside"]);
             temp.setTextureRect({0, 178, 32, 62});
             temp.setPosition(106 + i * 32, 107);
@@ -148,7 +138,6 @@ public:
         }
         {
             Walk temp;
-             
             temp.is_door = true;
             temp.where = "Outdoor";
             temp.setTexture(this->Graphics["Inside"]);
@@ -158,7 +147,6 @@ public:
         }
         {
             Walk temp;
-             
             temp.setTexture(this->Graphics["Victoria"]);
             temp.setTextureRect({72, 14, 47, 81});
             temp.setPosition(138, 280);
@@ -167,7 +155,6 @@ public:
         {
             Walk temp;
             temp.heal = true;
-             
             temp.setTexture(this->Graphics["Victoria"]);
             temp.setTextureRect({133, 134, 21, 19});
             temp.setPosition(330, 329);
@@ -178,7 +165,6 @@ public:
             for (int j = 0; j < 11; j++)
             {
                 Walk temp; 
-                 
                 temp.setTexture(this->Graphics["Water"]);
                 temp.setTextureRect({0, 160, 32, 32});
                 temp.setPosition(0 + i * 32, 0 + j * 32);
@@ -202,7 +188,6 @@ public:
             for (int j = 0; j < 4; j++)
             {
                 Walk temp; 
-                 
                 temp.setTexture(this->Graphics["Water"]);
                 temp.setTextureRect({0, 160, 32, 32});
                 temp.setPosition(0 + i * 32, 416 + j * 32);
@@ -247,7 +232,6 @@ public:
         }
         {
             Walk temp;
-             
             temp.setTexture(this->Graphics["House"]);
             temp.setTextureRect({0, 0, 95, 95});
             temp.setPosition(32, 225);
@@ -279,14 +263,6 @@ public:
             temp.setPosition(200, 130);
             this->npc["House"].push_back(temp);
         }
-        // {
-        //     Walk temp;
-        //     
-        //     temp.setTexture(this->Graphics["Mapa"]);
-        //     temp.setTextureRect({0, 0, 500, 500});
-        //     temp.setPosition(0, 0);
-        //     this->Levels["Mapa_walki"].push_back(temp);
-        // }
         {
             std::map<std::string, std::vector<sf::IntRect>> Label1;
             std::string Direkt[4] = {"Up", "Left", "Down", "Right"};
@@ -299,9 +275,9 @@ public:
                     Label1[Direkt[i]][j] = {0 + j*32, 4 + i*32, 32, 28};
                 }
             } 
-            Potwor temp("bat.png", Label1, 30, 9, 10, 100);
+            Potwor temp("bat.png", Label1, 30, 2, 10, 100);
             temp.setTexture(this->Graphics["Bat"]);
-            temp.setPosition(304,200);
+            temp.setPosition(272,200);
             this->monsters["Outdoor"].push_back(temp);
         }
         {
@@ -316,9 +292,9 @@ public:
                     Label1[Direkt[i]][j] = {j*32, i*38, 32, 38};
                 }
             } 
-            Potwor temp("eyeball.png", Label1, 30, 9, 10, 100);
+            Potwor temp("eyeball.png", Label1, 30, 3, 10, 100);
             temp.setTexture(this->Graphics["Eye"]);
-            temp.setPosition(400,30);
+            temp.setPosition(400,40);
             this->monsters["Outdoor"].push_back(temp);
         }
         this->Travel("House", Hero);
@@ -337,9 +313,5 @@ public:
         {
             Hero->setPosition(47,332);
         }
-        // else if(Place == "Mapa_walki")
-        // {
-        //     Hero->setPosition(305,300);
-        // }
     }
 };

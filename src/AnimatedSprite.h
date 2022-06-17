@@ -9,13 +9,13 @@ class AnimatedSprite : public sf::Sprite
 protected:
     std::vector<sf::IntRect> frames;
     sf::Texture texture;
-    virtual void changes(std::vector<sf::IntRect> new_frames)
+    virtual void changes(std::vector<sf::IntRect> &new_frames)
     {
         this->frames = new_frames;
         this->frame = 0;
     }
 public:
-    AnimatedSprite(std::string filename, std::vector<sf::IntRect> Frames)
+    AnimatedSprite(std::string &filename, std::vector<sf::IntRect> &Frames)
     {
         if(!texture.loadFromFile(filename))
         {

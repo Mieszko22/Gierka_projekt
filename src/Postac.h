@@ -21,14 +21,7 @@ public:
     }
     virtual void choose(std::string State)
     {
-        try 
-        {
-            this->state = State;
-            this->changes(all_frames[State]);
-        }
-        catch(std::string q)
-        {
-            throw "Blad nazwy kierunku";
-        }
+        this->state = State;
+        this->changes(all_frames[State]);
     }
 };
